@@ -28,7 +28,7 @@ links = block.findAll('a', href=True)
 
 for link in links:
 	js = link['onclick']
-	if 'PDF' not in js:
+	if 'pdf' not in js:
 		js = js.replace("_gaq.push(['_trackEvent', 'Downloads', 'excel', '",'')
 		print js
 	'''
