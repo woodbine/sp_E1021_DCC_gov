@@ -27,7 +27,9 @@ block = soup.find('ul',{'class':'plainList'})
 links = block.findAll('a', href=True)
 
 for link in links:
-	url = link['href']
+	js = link['onclick']
+	print js
+	'''
 	if '.csv' in url:
 		title = link.contents[0]
 		# create the right strings for the new filename
@@ -39,3 +41,4 @@ for link in links:
 		todays_date = str(datetime.now())
 		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
 		print filename
+	'''
