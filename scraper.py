@@ -28,11 +28,10 @@ links = block.findAll('a', href=True)
 
 for link in links:
 	js = link['onclick']
-	if 'pdf' not in js:
-		js = js.replace("_gaq.push(['_trackEvent', 'Downloads', 'excel', '",'')
-		print js
-	'''
-	if '.csv' in url:
+	#  grab the data out of the onclick instrution from javascript
+	if 'excel' in js:
+		#  clean up the onclick data
+		url = js.replace("_gaq.push(['_trackEvent', 'Downloads', 'excel', '",'').replace("'])",'')
 		title = link.contents[0]
 		# create the right strings for the new filename
 		csvYr = title.split(' ')[4]
@@ -43,4 +42,3 @@ for link in links:
 		todays_date = str(datetime.now())
 		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
 		print filename
-	'''
